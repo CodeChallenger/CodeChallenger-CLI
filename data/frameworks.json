@@ -1,19 +1,19 @@
 {
 	"php":{
 		"Laravel":{
-			"homepage": "http://laravel.com/",
+			"homepage": "http://laravel.com/"
 		},
 		"Symfony":{
-			"homepage": "http://symfony.com/",
+			"homepage": "http://symfony.com/"
 		},
 		"Silex":{
-			"homepage": "http://silex.sensiolabs.org/",
+			"homepage": "http://silex.sensiolabs.org/"
 		},
 		"CakePHP":{
-			"homepage": "http://cakephp.org/",
+			"homepage": "http://cakephp.org/"
 		},
 		"HACK":{
-			"homepage": "http://hacklang.org/",
+			"homepage": "http://hacklang.org/"
 		},
 		"Native":{
 			"homepage": "http://php.net"
@@ -22,7 +22,7 @@
 	},
 	"JavaScript":{
 		"Node JS":{
-			"homepage": "http://nodejs.org/",
+			"homepage": "http://nodejs.org/"
 		},
 		"Native":{
 			"homepage": "http://en.wikipedia.org/wiki/JavaScript"
@@ -30,7 +30,7 @@
 	},
 	"Ruby":{
 		"Ruby On Rails":{
-			"homepage": "http://rubyonrails.org/",
+			"homepage": "http://rubyonrails.org/"
 		},
 		"Native":{
 			"homepage": ""
