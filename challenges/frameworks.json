@@ -1,0 +1,66 @@
+{
+	"php":{
+		"Laravel":{
+			"homepage": "http://laravel.com/",
+		},
+		"Symfony":{
+			"homepage": "http://symfony.com/",
+		},
+		"Silex":{
+			"homepage": "http://silex.sensiolabs.org/",
+		},
+		"CakePHP":{
+			"homepage": "http://cakephp.org/",
+		},
+		"HACK":{
+			"homepage": "http://hacklang.org/",
+		},
+		"Native":{
+			"homepage": "http://php.net"
+		}
+
+	},
+	"JavaScript":{
+		"Node JS":{
+			"homepage": "http://nodejs.org/",
+		},
+		"Native":{
+			"homepage": "http://en.wikipedia.org/wiki/JavaScript"
+		}
+	},
+	"Ruby":{
+		"Ruby On Rails":{
+			"homepage": "http://rubyonrails.org/",
+		},
+		"Native":{
+			"homepage": ""
+		}
+	},
+	"Python":{
+		"Native":{
+			"homepage": "http://en.wikipedia.org/wiki/JavaScript"
+		}
+	},
+	"Perl":{
+		"Native":{
+			"homepage": "http://en.wikipedia.org/wiki/JavaScript"
+		}
+	},
+	"Java":{
+		"Native":{
+			"homepage": "http://en.wikipedia.org/wiki/JavaScript"
+		}
+	},
+	"C":{
+		"Native":{
+			"homepage": "http://en.wikipedia.org/wiki/JavaScript"
+		}
+	},
+	"GO":{
+		"Native":{
+			"homepage": "http://en.wikipedia.org/wiki/JavaScript"
+		}
+	}
+
+
+}

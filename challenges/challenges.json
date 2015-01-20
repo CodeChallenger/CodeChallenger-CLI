@@ -1,0 +1,97 @@
+{
+	"Replicator!":{
+		"description":"Replicate This CLI",
+		"homepage": "https://github.com/CodeChallenger/challenges-cli"
+	},
+
+	"Git":{
+		"description":"Build something using the GitHub API",
+		"homepage": "https://developer.github.com/"
+	},
+
+	"Like":{
+		"description":"Build something using the Facebook API",
+		"homepage": "https://developers.facebook.com/"
+	},
+
+	"Tweet":{
+		"description":"Build something using the Twitter API",
+		"homepage": "https://developers.twitter.com/"
+	},
+
+	"Sockets":{
+		"description":"Build something with sockets",
+		"homepage": "http://en.wikipedia.org/wiki/Network_socket"
+	},
+
+	"UX":{
+		"description":"Build something usefull with 1 textfield and one button",
+		"homepage": ""
+	},
+
+	"Stalk":{
+		"description":"Do something with geolocation",
+		"homepage": "http://en.wikipedia.org/wiki/Geolocation"
+	},
+
+	"Weird":{
+		"description":"Build something with the weirdest api you can find on the web.",
+		"homepage": "http://google.com"
+	},
+
+	"12,5%":{
+		"description":"Improve your programmers life",
+		"homepage": ""
+	},
+
+	"Childish":{
+		"description":"Build something child friendly",
+		"homepage": ""
+	},
+
+	"Lighning fast":{
+		"description":"Create a file transfer protocol.",
+		"homepage": ""
+	},
+
+	"safe":{
+		"description":"Create an encryption or hashing format",
+		"homepage": ""
+	},
+
+	"Destination":{
+		"description":"Calculate the time it takes you to get to your location.",
+		"homepage": ""
+	},
+
+	"Weird":{
+		"description":"Build something blue.",
+		"homepage": ""
+	},
+
+	"i'm hungry":{
+		"description":"Food, build anything with or for food.",
+		"homepage": ""
+	},
+
+	"OCD":{
+		"description":"Build something with only 50 lines of code",
+		"homepage": ""
+	},
+
+	"CDO":{
+		"description":"Build something with 55 lines of code",
+		"homepage": "http://google.com"
+	},
+
+	"imaginary":{
+		"description":"Modify an image, make it look like a mystical creature.",
+		"homepage": "http://google.com"
+	},
+
+	"Gotta catch 'm all":{
+		"description":"User Pokemon somewhere in your project",
+		"homepage": ""
+	}
+
+}
