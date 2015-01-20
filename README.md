@@ -9,6 +9,6 @@ Clone the repo to your local machine:
 
 When the file is cloned you can request an challenge by:
 
-`./challanger`
+`./challenger`
 
 This will return an challenge with an language an maby an framework or asset.
