@@ -1,0 +1,31 @@
+#!/usr/bin/env ruby
+
+##
+#
+#  @project Challenger CLI
+#  @author  Matti van de Weem <mvdweem@gmail.com>, Koen Vendrik <k.vendrik@gmail.com>
+#  @date    January 2015
+#  @url     http://github.com/CodeChallenger
+#
+##
+
+require 'rubygems'
+require 'json'
+require 'optparse'
+require_relative 'challenger.class.rb'
+
+# parse command line options
+options = {}
+OptionParser.new do |opts|
+  opts.banner = "Usage: challenger.rb [options...]"
+
+  opts.on("--language [LANGUAGE]", "Give a challenge for given language") do |language|
+    options[:language] = language.downcase
+  end
+end.parse!
+
+challenger = Challenger.new(options)
+puts challenger.construct_str()
+
+
+
