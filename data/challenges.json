@@ -60,17 +60,17 @@
 	},
 
 	"Destination":{
-		"description":"Calculate the time it takes you to get to your location.",
+		"description":"Calculate the time it takes you to get to your location",
 		"homepage": ""
 	},
 
 	"Weird":{
-		"description":"Build something blue.",
+		"description":"Build something blue",
 		"homepage": ""
 	},
 
 	"i'm hungry":{
-		"description":"Food, build anything with or for food.",
+		"description":"Food, build anything with or for food",
 		"homepage": ""
 	},
 
@@ -102,6 +102,36 @@
 	"What did we do?":{
 		"description":"Create a history of our repos",
 		"homepage": "https://github.com/CodeChallenger/"
+	},
+
+	"Alternative data":{
+		"description":"Create an data storage alternative",
+		"homepage": ""
+	},
+
+	"Chat":{
+		"description":"Build anything chatty",
+		"homepage": ""
+	},
+
+	"Square":{
+		"description":"Build something square",
+		"homepage": ""
+	},
+
+	"Water":{
+		"description":"Create something that has something to do with water",
+		"homepage": ""
+	},
+
+	"Domotics":{
+		"description":"Hack your house in some way",
+		"homepage": ""
+	},
+
+	"Lets play!":{
+		"description":"Build a something that has something to do with games",
+		"homepage": ""
 	}
 
 
