@@ -90,8 +90,18 @@
 	},
 
 	"Gotta catch 'm all":{
-		"description":"User Pokemon somewhere in your project",
+		"description":"Use Pokemon somewhere in your project",
 		"homepage": ""
+	},
+
+	"Trains":{
+		"description":"Use Trains in your project",
+		"homepage": ""
+	},
+
+	"What did we do?":{
+		"description":"Create a history of our repos",
+		"homepage": "https://github.com/CodeChallenger/"
 	}
 
 }
