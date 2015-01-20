@@ -1,14 +1,11 @@
-# challenges-cli
-CLI to request a new challenge.
+CodeChallenger-CLI
+==================
+#### CLI to generate new challenges.
 
 ### Getting started
-
-Clone the repo to your local machine:
-
+1. Clone the repo to your local machine and move into the directory:
 `git clone https://github.com/CodeChallenger/challenges-cli.git && cd challenges-cli`
+2. Request a new challenge using `./challenger`.<br>This will return a challenge with a language and framework to use.
 
-When the file is cloned you can request an challenge by:
-
-`./challenger`
-
-This will return an challenge with an language an maby an framework or asset.
+### Help
+Run the command with the `-h` flag to view usage info and available flags: `./challenger -h`.
