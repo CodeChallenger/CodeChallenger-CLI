@@ -31,12 +31,12 @@ class Challenger
     # get framework to use
     inputMatch = frameworks.select { |value| value.downcase == argvOptions[:framework] }
     if inputMatch.size > 0
-      challengeDetails['framework'] = { :name => inputMatch[0] }
+      challengeDetails['framework'] = { 'name' => inputMatch[0] }
     else
-      challengeDetails['framework'] = { :name => frameworks[rand(frameworks.size)] }
+      challengeDetails['framework'] = { 'name' => frameworks[rand(frameworks.size)] }
     end
 
-    challengeDetails['framework'][:details] = frameworksInfo[challengeDetails['language']][challengeDetails['framework'][:name]]
+    challengeDetails['framework']['details'] = frameworksInfo[challengeDetails['language']][challengeDetails['framework']['name']]
 
     # get the challenge details
     challengeDetails['details'] = challenges.values[rand(challenges.values.size)]
@@ -49,8 +49,8 @@ class Challenger
     if @challengeDetails != nil
 
       challengeDetails = @challengeDetails
-      framework = challengeDetails['framework'][:name]
-      frameworkDetails = challengeDetails['framework'][:details]
+      framework = challengeDetails['framework']['name']
+      frameworkDetails = challengeDetails['framework']['details']
       language = challengeDetails['language']
       challengeDetails = challengeDetails['details']
       return "#{challengeDetails['description']} in #{language} with #{framework}.\n#{frameworkDetails['homepage']}\n#{challengeDetails['homepage']}"
