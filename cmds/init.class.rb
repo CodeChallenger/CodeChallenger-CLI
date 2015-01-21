@@ -1,20 +1,19 @@
-class Challenger
+class Init
 
   def initialize(argvOptions)
-
-    # read a file
-    def read_file(file_name)
-      file = File.open(file_name, 'r')
-      data = file.read
-      file.close
-      return data
-    end
+    @argvOptions = argvOptions
 
     # open frameworks and challengers files
-    frameworksInfo = JSON.parse(read_file('data/frameworks.json'))
-    challenges = JSON.parse(read_file('data/challenges.json'))
+    @frameworksInfo = JSON.parse(read_file('data/frameworks.json'))
+    @challenges = JSON.parse(read_file('data/challenges.json'))
+  end
 
+  def new_challenge()
     challengeDetails = {}
+
+    argvOptions = @argvOptions
+    frameworksInfo = @frameworksInfo
+    challenges = @challenges
 
     # get language to use
     inputMatch = frameworksInfo.select { |key, value| key.downcase == argvOptions[:language] }
@@ -42,16 +41,19 @@ class Challenger
 
     # save to class
     @challengeDetails = challengeDetails;
-
   end
 
   def construct_str()
-    challengeDetails = @challengeDetails
-    framework = challengeDetails['framework']
-    frameworkDetails = challengeDetails['frameworkDetails']
-    language = challengeDetails['language']
-    challengeDetails = challengeDetails['challengeDetails']
-    return "#{challengeDetails['description']} in #{language} with #{framework}.\n#{frameworkDetails['homepage']}\n#{challengeDetails['homepage']}"
+    if @challengeDetails != nil
+
+      challengeDetails = @challengeDetails
+      framework = challengeDetails['framework']
+      frameworkDetails = challengeDetails['frameworkDetails']
+      language = challengeDetails['language']
+      challengeDetails = challengeDetails['challengeDetails']
+      return "#{challengeDetails['description']} in #{language} with #{framework}.\n#{frameworkDetails['homepage']}\n#{challengeDetails['homepage']}"
+
+    end
   end
 
 end

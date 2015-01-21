@@ -12,7 +12,16 @@
 require 'rubygems'
 require 'json'
 require 'optparse'
-require_relative 'challenger.class.rb'
+require_relative 'cmds/init.class.rb'
+
+
+# read a file
+def read_file(file_name)
+  file = File.open(file_name, 'r')
+  data = file.read
+  file.close
+  return data
+end
 
 # hash to store command line options
 options = {}
@@ -48,8 +57,16 @@ subCommands = {
           end
         end,
         :handler => lambda {
-          challenger = Challenger.new(options)
-          puts challenger.construct_str()
+          init = Init.new(options)
+
+          loop do
+            init.new_challenge
+            puts "\n"+init.construct_str
+            print "\nUse this challenge? [Y/n] "
+
+            answer = gets.chomp
+            break if answer.downcase != 'n'
+          end
         }
     }
 
