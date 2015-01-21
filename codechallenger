@@ -36,7 +36,7 @@ end
 subCommands = {
 
     'init' => {
-        'optionParser' => OptionParser.new do |opts|
+        :optionParser => OptionParser.new do |opts|
           opts.banner = 'Usage: codechallenger init [options...]'
 
           opts.on('--language [LANGUAGE]', 'Give a challenge for given language') do |language|
@@ -47,7 +47,7 @@ subCommands = {
             options[:framework] = framework.downcase
           end
         end,
-        'handler' => lambda {
+        :handler => lambda {
           challenger = Challenger.new(options)
           puts challenger.construct_str()
         }
