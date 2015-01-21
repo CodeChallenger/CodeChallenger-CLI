@@ -14,22 +14,56 @@ require 'json'
 require 'optparse'
 require_relative 'challenger.class.rb'
 
-# parse command line options
+# hash to store command line options
 options = {}
-OptionParser.new do |opts|
-  opts.banner = "Usage: codechallenger [options...]"
 
-  opts.on("--language [LANGUAGE]", "Give a challenge for given language") do |language|
-    options[:language] = language.downcase
+helpText = <<HELP
+Usage: codechallenger <command> [options...]
+
+Commands:
+   init        generate a new challenge
+
+See 'codechallenger <command> --help' for help on a specific command.
+HELP
+
+global = OptionParser.new do |opts|
+  opts.on('-h', '--help', 'Show help') do |language|
+    puts helpText
+    exit 0
   end
+end
 
-  opts.on("--framework [FRAMEWORK]", "Give a challenge with the given framework") do |framework|
-    options[:framework] = framework.downcase
-  end
-end.parse!
+subCommands = {
 
-challenger = Challenger.new(options)
-puts challenger.construct_str()
+    'init' => {
+        'optionParser' => OptionParser.new do |opts|
+          opts.banner = 'Usage: codechallenger init [options...]'
 
+          opts.on('--language [LANGUAGE]', 'Give a challenge for given language') do |language|
+            options[:language] = language.downcase
+          end
 
+          opts.on('--framework [FRAMEWORK]', 'Give a challenge with the given framework') do |framework|
+            options[:framework] = framework.downcase
+          end
+        end,
+        'handler' => lambda {
+          challenger = Challenger.new(options)
+          puts challenger.construct_str()
+        }
+    }
 
+}
+
+# parse global flags
+global.order!
+
+# if subcommand, parse flags
+command = ARGV.shift
+if command != nil && subCommands[command] != nil
+  details = subCommands[command]
+  details[:optionParser].order!
+  details[:handler].call
+end
+
+exit 0
