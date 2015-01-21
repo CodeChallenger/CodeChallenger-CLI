@@ -1,4 +1,6 @@
-class Init
+require 'json'
+
+class Challenger
 
   def initialize(argvOptions)
     @argvOptions = argvOptions
@@ -29,15 +31,15 @@ class Init
     # get framework to use
     inputMatch = frameworks.select { |value| value.downcase == argvOptions[:framework] }
     if inputMatch.size > 0
-      challengeDetails['framework'] = inputMatch[0]
+      challengeDetails['framework'] = { :name => inputMatch[0] }
     else
-      challengeDetails['framework'] = frameworks[rand(frameworks.size)]
+      challengeDetails['framework'] = { :name => frameworks[rand(frameworks.size)] }
     end
 
-    challengeDetails['frameworkDetails'] = frameworksInfo[challengeDetails['language']][challengeDetails['framework']]
+    challengeDetails['framework'][:details] = frameworksInfo[challengeDetails['language']][challengeDetails['framework'][:name]]
 
-    # get the challenge
-    challengeDetails['challengeDetails'] = challenges.values[rand(challenges.values.size)]
+    # get the challenge details
+    challengeDetails['details'] = challenges.values[rand(challenges.values.size)]
 
     # save to class
     @challengeDetails = challengeDetails;
@@ -47,13 +49,17 @@ class Init
     if @challengeDetails != nil
 
       challengeDetails = @challengeDetails
-      framework = challengeDetails['framework']
-      frameworkDetails = challengeDetails['frameworkDetails']
+      framework = challengeDetails['framework'][:name]
+      frameworkDetails = challengeDetails['framework'][:details]
       language = challengeDetails['language']
-      challengeDetails = challengeDetails['challengeDetails']
+      challengeDetails = challengeDetails['details']
       return "#{challengeDetails['description']} in #{language} with #{framework}.\n#{frameworkDetails['homepage']}\n#{challengeDetails['homepage']}"
 
     end
+  end
+
+  def get_details()
+    return @challengeDetails
   end
 
 end

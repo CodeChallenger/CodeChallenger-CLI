@@ -9,10 +9,8 @@
 #
 ##
 
-require 'rubygems'
-require 'json'
 require 'optparse'
-require_relative 'cmds/init.class.rb'
+require_relative 'inc/challenger.class.rb'
 
 
 # read a file
@@ -57,16 +55,18 @@ subCommands = {
           end
         end,
         :handler => lambda {
-          init = Init.new(options)
+          challenger = Challenger.new(options)
 
           loop do
-            init.new_challenge
-            puts "\n"+init.construct_str
+            challenger.new_challenge
+            puts "\n"+challenger.construct_str
             print "\nUse this challenge? [Y/n] "
 
             answer = gets.chomp
             break if answer.downcase != 'n'
           end
+
+          p challenger.get_details
         }
     }
 
