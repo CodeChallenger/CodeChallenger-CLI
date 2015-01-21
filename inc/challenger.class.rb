@@ -49,11 +49,20 @@ class Challenger
     if @challengeDetails != nil
 
       challengeDetails = @challengeDetails
+      language = challengeDetails['language']
       framework = challengeDetails['framework']['name']
       frameworkDetails = challengeDetails['framework']['details']
-      language = challengeDetails['language']
       challengeDetails = challengeDetails['details']
-      return "#{challengeDetails['description']} in #{language} with #{framework}.\n#{frameworkDetails['homepage']}\n#{challengeDetails['homepage']}"
+      
+      outputStr = "#{challengeDetails['description']} in #{language} with #{framework}."
+
+      frameworkDetails.each do |key, val|
+        if val != '' && val != nil
+          outputStr += "\n"+val
+        end
+      end
+
+      return outputStr
 
     end
   end
