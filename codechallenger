@@ -56,8 +56,24 @@ subCommands = {
           opts.on('--framework [FRAMEWORK]', 'Give a challenge with the given framework') do |framework|
             options[:framework] = framework.downcase
           end
+
+          opts.on('--path [PATH]', 'Path to folder you\'d like to create the challenge in') do |path|
+            options[:path] = path
+          end
         end,
         :handler => lambda {
+          path = options[:path] != nil ? options[:path]+'/.codechallenger.json' : '.codechallenger.json'
+
+          if File.file?(path)
+            loop do
+              print "\nThere is already a .codechallenger.json in this directory.\nWould you like to continue? [y/N] "
+
+              answer = gets.chomp
+              return if answer.downcase != 'y'
+              break if answer.downcase == 'y'
+            end
+          end
+
           challenger = Challenger.new(options)
 
           loop do
@@ -69,7 +85,12 @@ subCommands = {
             break if answer.downcase != 'n'
           end
 
-          p challenger.get_details
+          details = challenger.get_details
+
+          # write details to .codechallenger.json file
+          File.open(path, 'w') {|f| f.write(details.to_json) }
+
+          puts "\n✔ Start Coding!"
         }
     }
 
