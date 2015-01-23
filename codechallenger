@@ -84,6 +84,9 @@ if command != nil && subCommands[command] != nil
   details = subCommands[command]
   details[:optionParser].order!
   details[:handler].call
+else
+  puts helpText
+  exit 0
 end
 
 exit 0
