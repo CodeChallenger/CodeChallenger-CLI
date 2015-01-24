@@ -13,6 +13,7 @@ require 'rubygems'
 require 'bundler/setup'
 
 require 'optparse'
+require 'json'
 require_relative 'inc/challenger.class.rb'
 
 
@@ -31,7 +32,8 @@ helpText = <<HELP
 Usage: codechallenger <command> [options...]
 
 Commands:
-   init        generate a new challenge
+  init          generate a new challenge
+  deploy        deploys your challenge code to Github
 
 See 'codechallenger <command> --help' for help on a specific command.
 HELP
@@ -92,6 +94,45 @@ subCommands = {
 
           puts "\n✔ Start Coding!"
         }
+    },
+
+    'deploy' => {
+        :optionParser => OptionParser.new do |opts|
+          opts.banner = 'Usage: codechallenger deploy'
+
+          opts.on('--path [PATH]', 'Path to the challenge folder') do |path|
+            options[:path] = path
+          end
+        end,
+        :handler => lambda {
+          path = options[:path] != nil ? options[:path]+'/' : ''
+
+          if not File.exists?(path+'.codechallenger.json')
+            puts 'No .codechallenger.json file found.'
+            exit 1
+          end
+
+          if not File.directory?(path+'.git')
+            `git init`
+          end
+
+          settings = File.read(path+'.codechallenger.json', 'r')
+          p settings
+
+          if not settings['repository']
+            loop do
+              print "\nEnter the URL of the repository you\'d like to store your challenge in: "
+              answer = gets.chomp
+              break if answer != ''
+            end
+
+            `git remote add codechallenger `+answer
+
+            settings['repository'] = answer
+          end
+
+          p 'Done...'
+        }
     }
 
 }
@@ -107,7 +148,6 @@ if command != nil && subCommands[command] != nil
   details[:handler].call
 else
   puts helpText
-  exit 0
 end
 
 exit 0

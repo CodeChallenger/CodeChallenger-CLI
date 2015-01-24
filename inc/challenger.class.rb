@@ -1,5 +1,3 @@
-require 'json'
-
 class Challenger
 
   def initialize(argvOptions)
