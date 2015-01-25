@@ -90,7 +90,7 @@ subCommands = {
           details = challenger.get_details
 
           # write details to .codechallenger.json file
-          File.open(path, 'w') {|f| f.write(details.to_json) }
+          File.open(path, 'w') {|f| f.write(JSON.pretty_generate(details)) }
 
           puts "\n✔ Start Coding!"
         }
@@ -107,31 +107,48 @@ subCommands = {
         :handler => lambda {
           path = options[:path] != nil ? options[:path]+'/' : ''
 
+          # check if directory is codechallenger directory
           if not File.exists?(path+'.codechallenger.json')
-            puts 'No .codechallenger.json file found.'
+            puts 'No .codechallenger.json file found. Run the init command first.'
             exit 1
           end
 
+          # check if folder has Git
           if not File.directory?(path+'.git')
-            `git init`
+            system('git init')
           end
 
-          settings = File.read(path+'.codechallenger.json', 'r')
-          p settings
+          # get path to settings
+          settingsPath = path+'.codechallenger.json'
 
+          # get settings
+          settings = File.read(settingsPath)
+          settings = JSON.parse(settings)
+
+          # if no repository in settings
+          # ask url and add to both Git and the settings file
           if not settings['repository']
+            answer = ''
             loop do
               print "\nEnter the URL of the repository you\'d like to store your challenge in: "
               answer = gets.chomp
               break if answer != ''
             end
 
-            `git remote add codechallenger `+answer
-
+            # add url to git 
+            system('git remote add codechallenger '+answer)
+            
+            # add url to settings
             settings['repository'] = answer
+
+            # write settings back to file
+            File.open(settingsPath, 'w') {|f| f.write(JSON.pretty_generate(settings)) }
           end
 
-          p 'Done...'
+          # deploy challenge to repository
+          system('git add -A && git commit && git push codechallenger master')
+
+          puts "\n✔ Challenge deployed to "+settings['repository']
         }
     }
 
