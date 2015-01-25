@@ -148,7 +148,7 @@ subCommands = {
           # deploy challenge to repository
           system('git add -A && git commit && git push codechallenger master')
 
-          puts "\n✔ Challenge deployed to "+settings['repository']
+          puts "\n✔ Challenge deployed to: "+settings['repository']
         }
     }
 
