@@ -43,6 +43,7 @@ Commands:
   init          generate a new challenge in the directory
   uninit        remove CodeChallenger from the directory
   deploy        deploys your challenge code to Github
+  update        update the CLI to the latest version
 
 See 'codechallenger <command> --help' for help on a specific command.
 HELP
