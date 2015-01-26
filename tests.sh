@@ -1,3 +1,7 @@
+# TODO: make tests work with Travis
+# automatically fill in input requests
+# try to pull before pushing to remote repo
+
 cc=$(pwd)/codechallenger
 cc_dir_path=../codechallenger-cli-tests
 
