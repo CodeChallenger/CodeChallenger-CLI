@@ -33,6 +33,41 @@ def check_if_challenger_dir(pathPrefix='')
   end
 end
 
+def get_settings(pathPrefix='')
+  check_if_challenger_dir(pathPrefix)
+
+  # get path to settings
+  settingsPath = pathPrefix+'.codechallenger.json'
+
+  # get settings
+  settings = File.read(settingsPath)
+  return JSON.parse(settings)
+end
+
+def check_repository_field(pathPrefix='', settings)
+  # if no repository in settings
+  # ask url and add to both Git and the settings file
+  if not settings['repository']
+    answer = ''
+    loop do
+      print "\nEnter the URL of the repository for your challenge: "
+      answer = gets.chomp
+      break if answer != ''
+    end
+
+    # add url to git 
+    if not system('git remote add codechallenger '+answer)
+      exit 1
+    end
+    
+    # add url to settings
+    settings['repository'] = answer
+
+    # write settings back to file
+    File.open(pathPrefix+'.codechallenger.json', 'w') {|f| f.write(JSON.pretty_generate(settings)) }
+  end
+end
+
 # hash to store command line options
 options = {}
 
@@ -43,7 +78,6 @@ Commands:
   init          generate a new challenge in the directory
   uninit        remove CodeChallenger from the directory
   deploy        deploys your challenge code to Github
-  update        update the CLI to the latest version
 
 See 'codechallenger <command> --help' for help on a specific command.
 HELP
@@ -108,7 +142,7 @@ subCommands = {
 
     'deploy' => {
         :optionParser => OptionParser.new do |opts|
-          opts.banner = 'Usage: codechallenger deploy'
+          opts.banner = 'Usage: codechallenger deploy [options...]'
 
           opts.on('--path [PATH]', 'Path to the challenge folder') do |path|
             options[:path] = path
@@ -127,34 +161,11 @@ subCommands = {
             end
           end
 
-          # get path to settings
-          settingsPath = path+'.codechallenger.json'
-
           # get settings
-          settings = File.read(settingsPath)
-          settings = JSON.parse(settings)
+          settings = get_settings(path)
 
-          # if no repository in settings
-          # ask url and add to both Git and the settings file
-          if not settings['repository']
-            answer = ''
-            loop do
-              print "\nEnter the URL of the repository you\'d like to store your challenge in: "
-              answer = gets.chomp
-              break if answer != ''
-            end
-
-            # add url to git 
-            if not system('git remote add codechallenger '+answer)
-              exit 1
-            end
-            
-            # add url to settings
-            settings['repository'] = answer
-
-            # write settings back to file
-            File.open(settingsPath, 'w') {|f| f.write(JSON.pretty_generate(settings)) }
-          end
+          # check repo field
+          check_repository_field(path, settings)
 
           # deploy challenge to repository
           if not system('git add -A && git commit && git push codechallenger master')
@@ -167,7 +178,7 @@ subCommands = {
 
     'uninit' => {
         :optionParser => OptionParser.new do |opts|
-          opts.banner = 'Usage: codechallenger uninit'
+          opts.banner = 'Usage: codechallenger uninit [options...]'
 
           opts.on('--path [PATH]', 'Path to the challenge folder') do |path|
             options[:path] = path
@@ -176,7 +187,7 @@ subCommands = {
         :handler => lambda {
           path = options[:path] != nil ? options[:path]+'/' : ''
 
-          check_if_challenger_dir(path)
+          settings = get_settings(path)
 
           loop do
             print "\nThis will permanently remove CodeChallenger from this directory.\nWould you like to continue? [y/N] "
@@ -190,25 +201,13 @@ subCommands = {
           File.delete(path+'.codechallenger.json')
 
           # remove git url
-          if File.directory?(path+'.git')
+          if File.directory?(path+'.git') && settings['repository']
             if not system('git remote remove codechallenger')
               exit 1
             end
           end
 
           puts "\n✔ CodeChallenger has been removed from this directory."
-        }
-    },
-
-    'update' => {
-        :optionParser => OptionParser.new do |opts|
-          opts.banner = 'Usage: codechallenger update'
-        end,
-        :handler => lambda {
-          if not system('git pull origin master')
-            exit 1
-          end
-          puts "\n✔ CodeChallenger-CLI has been updated."
         }
     }
 

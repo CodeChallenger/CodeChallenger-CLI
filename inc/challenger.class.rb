@@ -4,8 +4,9 @@ class Challenger
     @argvOptions = argvOptions
 
     # open frameworks and challengers files
-    @frameworksInfo = JSON.parse(read_file('data/frameworks.json'))
-    @challenges = JSON.parse(read_file('data/challenges.json'))
+    workDirPath = File.expand_path('..', File.dirname(__FILE__))
+    @frameworksInfo = JSON.parse(read_file(workDirPath+'/data/frameworks.json'))
+    @challenges = JSON.parse(read_file(workDirPath+'/data/challenges.json'))
   end
 
   def new_challenge()
