@@ -136,7 +136,7 @@ subCommands = {
           # write details to .codechallenger.json file
           File.open(path, 'w') {|f| f.write(JSON.pretty_generate(details)) }
 
-          puts "\n✔ Start Coding!"
+          puts "\nStart Coding!"
         }
     },
 
@@ -172,7 +172,7 @@ subCommands = {
             exit 1
           end
 
-          puts "\n✔ Challenge deployed to: "+settings['repository']
+          puts "\nChallenge deployed to: "+settings['repository']
         }
     },
 
@@ -207,7 +207,7 @@ subCommands = {
             end
           end
 
-          puts "\n✔ CodeChallenger has been removed from this directory."
+          puts "\nCodeChallenger has been removed from this directory."
         }
     }
 
