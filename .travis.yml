@@ -1,4 +1,4 @@
-language: bash
+language: ruby
 
 script:
     - bash tests.sh
