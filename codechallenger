@@ -44,24 +44,25 @@ def get_settings(pathPrefix='')
   return JSON.parse(settings)
 end
 
-def check_repository_field(pathPrefix='', settings)
+def check_repository_field(pathPrefix='', settings, repoUrl)
   # if no repository in settings
   # ask url and add to both Git and the settings file
   if not settings['repository']
-    answer = ''
-    loop do
-      print "\nEnter the URL of the repository for your challenge: "
-      answer = gets.chomp
-      break if answer != ''
+    if repoUrl == nil
+      loop do
+        print "\nEnter the URL of the repository for your challenge: "
+        repoUrl = gets.chomp
+        break if repoUrl != ''
+      end
     end
 
     # add url to git 
-    if not system('git remote add codechallenger '+answer)
+    if not system('git remote add codechallenger '+repoUrl)
       exit 1
     end
     
     # add url to settings
-    settings['repository'] = answer
+    settings['repository'] = repoUrl
 
     # write settings back to file
     File.open(pathPrefix+'.codechallenger.json', 'w') {|f| f.write(JSON.pretty_generate(settings)) }
@@ -147,6 +148,18 @@ subCommands = {
           opts.on('--path [PATH]', 'Path to the challenge folder') do |path|
             options[:path] = path
           end
+
+          opts.on('--repository [URL]', 'The URL of the repository you would like to use. Will be saved to the settings.') do |repo|
+            options[:repo] = repo
+          end
+
+          opts.on('-m [MESSAGE]', 'The commit message you would like to use for the commit') do |msg|
+            options[:message] = msg
+          end
+
+          opts.on('-p', 'Pull before pushing to the repo') do |pullFirst|
+            options[:pull] = pullFirst
+          end
         end,
         :handler => lambda {
           path = options[:path] != nil ? options[:path]+'/' : ''
@@ -165,10 +178,25 @@ subCommands = {
           settings = get_settings(path)
 
           # check repo field
-          check_repository_field(path, settings)
+          check_repository_field(path, settings, options[:repo])
 
-          # deploy challenge to repository
-          if not system('git add -A && git commit && git push codechallenger master')
+          # git commit message and repo
+          msgFlag = options[:message] != nil ? "-m '"+options[:message]+"'" : ''
+
+          # add and commit
+          if not system('git add -A') or not system("git commit #{msgFlag}")
+            exit 1
+          end
+
+          # pull first if needed
+          if options[:pull] != nil
+            if not system('git pull codechallenger master')
+              exit 1
+            end
+          end
+
+          # deploy to repo
+          if not system('git push codechallenger master')
             exit 1
           end
 

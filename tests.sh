@@ -11,23 +11,23 @@ fancy_echo(){
 }
 
 test_cmd_pass(){
-	$cc $1 --path=$cc_dir_path
+	yes | $cc "$@" --path=$cc_dir_path
 	if [ $? -ne 0 ]; then
 		clean_up
 		exit 1
 	else
-		fancy_echo 32 "$1        [OK]"
+		fancy_echo 32 "Pass: $1        [OK]"
 	fi
 }
 
 test_cmd_fail(){
-	$cc $1 --path=$cc_dir_path
+	yes | $cc "$@" --path=$cc_dir_path
 	echo $?
 	if [ $? -ne 1 ]; then
 		clean_up
 		exit 1
 	else
-		fancy_echo 32 "$1        [OK]"
+		fancy_echo 32 "Fail: $1        [OK]"
 	fi
 }
 
@@ -39,10 +39,11 @@ clean_up(){
 # create folder to run tests in
 mkdir $cc_dir_path
 cd $cc_dir_path
+echo ".codechallenger.json" >> .gitignore
 
 # run tests
 test_cmd_pass init
-test_cmd_pass deploy
+test_cmd_pass deploy -m "unit test commit" -p --repository "https://github.com/CodeChallenger/CodeChallenger-CLI-test-repo.git"
 test_cmd_pass uninit
 
 test_cmd_fail deploy
