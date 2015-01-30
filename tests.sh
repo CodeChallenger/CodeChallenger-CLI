@@ -41,7 +41,7 @@ echo ".codechallenger.json" >> .gitignore
 
 # run tests
 test_cmd_pass init
-test_cmd_pass deploy -m "unit test commit" -p --repository "https://github.com/CodeChallenger/CodeChallenger-CLI-test-repo.git"
+test_cmd_pass deploy -m "unit test commit" -p --repository "https://github.com/CodeChallenger/CodeChallenger-CLI-test-repo.git" --istest
 test_cmd_pass uninit
 
 test_cmd_fail deploy

@@ -56,11 +56,11 @@ def check_repository_field(pathPrefix='', settings, repoUrl)
       end
     end
 
-    # add url to git 
+    # add url to git
     if not system('git remote add codechallenger '+repoUrl)
       exit 1
     end
-    
+
     # add url to settings
     settings['repository'] = repoUrl
 
@@ -160,6 +160,10 @@ subCommands = {
           opts.on('-p', '--pull', 'Pull before pushing to the repo') do |pullFirst|
             options[:pull] = pullFirst
           end
+
+          opts.on('--istest', 'Specifies if running the deploy command is part of a unit test') do |isTest|
+            options[:isTest] = isTest
+          end
         end,
         :handler => lambda {
           path = options[:path] != nil ? options[:path]+'/' : ''
@@ -196,8 +200,11 @@ subCommands = {
           end
 
           # deploy to repo
-          if not system('git push codechallenger master')
-            exit 1
+          # if not test
+          if not options[:isTest]
+            if not system('git push codechallenger master')
+              exit 1
+            end
           end
 
           puts "\nChallenge deployed to: "+settings['repository']

@@ -2,7 +2,3 @@ language: bash
 
 script:
 - bash tests.sh
-
-env:
-  global:
-    secure: Vo41N0YaopJLe4UIf6hsFunwf1lMDm2Zko8d6oZZTWQIxe2as97Vovi533bpCUMXSKHszuoKYaWRgtErWJbXE5IoxDPx2YwKAYjEzTben2j80KW20U5u3WszjjShj24FoX17m5nMB/4On+lJ4eyJ9PFme00IU75Bnlme77ZxQtQ=
