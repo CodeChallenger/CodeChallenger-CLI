@@ -39,8 +39,8 @@ cd $cc_dir_path
 echo ".codechallenger.json" >> .gitignore
 
 # config Git (for Travis)
-git config user.email "k.vendrik@gmail.com"
-git config user.name "Koen Vendrik"
+git config --global user.email "k.vendrik@gmail.com"
+git config --global user.name "Koen Vendrik"
 
 # run tests
 test_cmd_pass init
