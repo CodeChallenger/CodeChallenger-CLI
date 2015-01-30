@@ -5,12 +5,8 @@ before_script:
     - git config --global user.email "cli@codechallenger.com"
     - git config --global user.name "CodeChallenger-CLI"
     - echo "Add SSH key to push to unit tests repo"
-    - echo -e "Host *\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
     - echo -e "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDEhg53UXneIbZdxz6j+5oaxQS34L6WvyY7Mc1NgicSi7fTltZkXyC9hFrasRNDizhXDKayEwJx+u7t9Ze2IANuhDLq++zAZks2vSOAYESqsVyhv0A80VnL7VbmJ2OkSvTWs6x4H3RHiHkopHTgLBSm1rJkoSLyaL763cY5yCaDidmu/jVaeXNMAfYJ8AZu4ne8zqcYV/ZWJDn7eahrCwi+g5N0mmrrKAbvtpqWFtGBJRwi8Z1l/Wi19xIFOEQVpHsxYFXIxtto/QkM9bM2Tw8hq9JHO2blPgR32FsC1siaQC/6dK3CU2PVT5MDtex1nyUUqvgaryQKd/F1YShSVYEv cli@codechallenger.com" > ~/.ssh/id_rsa.pub
     - echo -e "-----BEGIN RSA PRIVATE KEY-----MIIEpAIBAAKCAQEAxIYOd1F53iG2Xcc+o/uaGsUEt+C+lr8mOzHNTYInEou305bWZF8gvYRa2rETQ4s4VwymshMCcfru7fWXtiADboQy6vvswGZLNr0jgGBEqrFcob9APNFZy+1W5idjpEr01rOseB90R4h5KKR04CwUptayZKEi8mi++t3GOcgmg4nZrv41WnlzTAH2CfAGbuJ3vM6nGFf2ViQ5+3moawsIvoOTdJpq6ygG77aalhbRgSUcIvGdZf1otfcSBThEFaR7MWBVyMbbaP0JDPWzNk8PIavSRztm5T4Ed9hbAtbImkAv+nStwlNj1U+TA7XsdZ8lFKr4Gq8kCnfxdWEoUlWBLwIDAQABAoIBACjVNdJC4pBt7sdja7eEwotHXmiaUN9fjiEEgwTUwyuOTj6ve5JVVacrBfmkiz0ggy9LGKOtYXevTM+ylLgpxKzE2ROMDrAXUQ9pkyPMXNgejAGrjDxWv1Ko2MJvcrujO2YU5QP8fRuT1qDEMuiVICFeQKi59lnpu6zCQbqlxKLVtt0gkVOzYS38HOmMAW4WpZus8EuBrg3XpQn5QZa89dj2xFJu2sCv0iY28oaI3Q3Y/DJTE9oK96LkVCqrDl7GVp9hJMmD3V1LMdU2yqrXYQy7LJeKxrKakrOmEPlGPjbhRu47M4ITHooR+fww7EWlosjom8qolkeRf37Mm0yXUDECgYEA+eYUN5E9HnPXHaEZM/3cDbFzkR5AOPDViByTAbEQDT1c91Z2QRZHsPRFFXfU/MUCW5rh2pOgcs1ybV9JiALlf3VF9Xu4KRu9CZEBpOp/Mp6yKVaKdSWtp1F40Th85mY5LbdnrpftR+DdKoHFtbV+TDnE7qzihMeglHMVtvPAL7cCgYEAyVJfKdRaHOhPo5GsopzKQoVIUu/igaOxCjzu5NeGEqYU0dNex0WIuxaNH5H2yfyZriOlPJsmnaBAYQ/ndVT3GA2MlU4BAyhfZENykD+0MJVR4eQM90mDcUfSo52CS2MX6eM0q3GjoVGXYwiay+/TYgKFirsBAAptMsdMXLkrSkkCgYBxyGDMLEU36Ga6BvACzEO1uGZ2XN/BDWcsYlZNHuHAJYB+3c9aM1rRJ2eNLtK7hLheHVdYvn7/xqujQQ+p7iewsST5cSuZDBg2kt+8x0jDM57LU6wXSuCWnnH0UVQNU94VAr0isepIIAqToCL1aX3oFyWjxvQcoQhsjzoD41hOYQKBgQCqBbsA5KpGB5xak8isfKYEj/OIt7cfrVLzRoqrEanVThX/Lve4a20SM/VzWB6Ib6CKhOgjyxRNwu0cDAZ5/QvBcI/t+Da6p/oH/z5dvK886J6Cm8qnfZpYrUOjkn5blJC5onz03cBHmVS0+qtg2GY5O8/0XgJ2OlgGrnI7TNbWoQKBgQDRh+JAwXOGl1DnxQwt0CpW8LJaIuIL2NDrwEhWtYTN9KlGhKKucilV1ADh1YSTC2WmUKzRGn4zsEePv7jIwd6EbOlpsyrD6Bq3c9IAn6j9MU/y160smSaAfdWK+0XF2eyjRoTJxLVNcGb2sxmi6PeJEoAgNpljXZfob0NpjjYh7A==-----END RSA PRIVATE KEY-----" > ~/.ssh/id_rsa
-    - chmod 600 ~/.ssh/id_rsa*
-    - eval `ssh-agent -s`
-    - ssh-add ~/.ssh/id_rsa
 
 script:
     - bash tests.sh
