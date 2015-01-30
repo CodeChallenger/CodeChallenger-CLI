@@ -1,4 +1,4 @@
-CodeChallenger-CLI
+CodeChallenger-CLI [![CodeChallenger-CLI on Travis](https://travis-ci.org/CodeChallenger/CodeChallenger-CLI.svg?branch=master)](http://travis-ci.org/CodeChallenger/CodeChallenger-CLI)
 ==================
 #### CLI to generate new challenges.
 
