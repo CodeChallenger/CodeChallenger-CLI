@@ -34,7 +34,13 @@ clean_up(){
 # create folder to run tests in
 mkdir $cc_dir_path
 cd $cc_dir_path
+
+# add file to gitignore
 echo ".codechallenger.json" >> .gitignore
+
+# config Git (for Travis)
+git config user.email "k.vendrik@gmail.com"
+git config user.name "Koen Vendrik"
 
 # run tests
 test_cmd_pass init
