@@ -1,4 +1,8 @@
 language: bash
 
+before_script:
+    - git config --global user.email "k.vendrik@gmail.com"
+    - git config --global user.name "Koen Vendrik"
+
 script:
     - bash tests.sh

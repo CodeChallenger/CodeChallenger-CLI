@@ -35,12 +35,9 @@ clean_up(){
 mkdir $cc_dir_path
 cd $cc_dir_path
 
-# add file to gitignore
+# add settings to gitignore
+# to prevent git conflicts when pulling/pushing
 echo ".codechallenger.json" >> .gitignore
-
-# config Git (for Travis)
-git config --global user.email "k.vendrik@gmail.com"
-git config --global user.name "Koen Vendrik"
 
 # run tests
 test_cmd_pass init
