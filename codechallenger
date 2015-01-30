@@ -149,15 +149,15 @@ subCommands = {
             options[:path] = path
           end
 
-          opts.on('--repository [URL]', 'The URL of the repository you would like to use. Will be saved to the settings.') do |repo|
+          opts.on('--repository [URL]', 'URL of the repository you would like to use. Will be saved.') do |repo|
             options[:repo] = repo
           end
 
-          opts.on('-m [MESSAGE]', 'The commit message you would like to use for the commit') do |msg|
+          opts.on('-m [MESSAGE]', '--message [MESSAGE]', 'The commit message you would like to use for the commit') do |msg|
             options[:message] = msg
           end
 
-          opts.on('-p', 'Pull before pushing to the repo') do |pullFirst|
+          opts.on('-p', '--pull', 'Pull before pushing to the repo') do |pullFirst|
             options[:pull] = pullFirst
           end
         end,

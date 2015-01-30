@@ -1,7 +1,3 @@
-# TODO: make tests work with Travis
-# automatically fill in input requests
-# try to pull before pushing to remote repo
-
 cc=$(pwd)/codechallenger
 cc_dir_path=../codechallenger-cli-tests
 
@@ -22,7 +18,6 @@ test_cmd_pass(){
 
 test_cmd_fail(){
 	yes | $cc "$@" --path=$cc_dir_path
-	echo $?
 	if [ $? -ne 1 ]; then
 		clean_up
 		exit 1
